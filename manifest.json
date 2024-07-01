@@ -1,7 +1,7 @@
 {
     "name": "Planning",
     "short_name": "Planning TopVakantie",
-    "description": "Dit is de planing van TopVakantie",
+    "description": "Dit is de planning van TopVakantie",
     "scope": "./",
     "start_url": "./",
     "background_color": "#ffffff",
@@ -10,7 +10,7 @@
     "display_override": ["standalone"],
     "icons": [
         {
-            "src": "./icoon app.png",
+            "src": "./icoon-app.png",
             "type": "image/png",
             "sizes": "700x700"
         }
