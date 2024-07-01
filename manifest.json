@@ -1,0 +1,12 @@
+{
+    "name": "Bram Matthys",
+    "short_name": "Planning TopVakantie",
+    "description": "Hello World as a Progressive Web App",
+    "scope": "./",
+    "start_url": "./",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "display": "fullscreen",
+    "display_override": ["standalone"],
+    "icons": []
+}

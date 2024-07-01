@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planning Top Vakantie</title>
+    <link rel="manifest" href="./manifest.json">
+</head>
+<style>
+    table,
+    tr,
+    td,
+    th {
+        border: 1px black solid;
+        border-collapse: collapse;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    #tabel,
+    #klok,
+    #Activiteit,
+    #uren {
+        display: flex;
+        justify-content: center;
+    }
+
+    #klok {
+        font-size: 50px;
+    }
+
+    span {
+        text-align: center;
+    }
+    .center {
+        text-align: center;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <h1 id="klok">Als je dit bericht ziet, contacteer Bram Matthys</h1>
+    <h2 id="Activiteit">Als je dit bericht ziet, contacteer Bram Matthys</h2>
+    <div class="center">
+        <span id="mainSpan">van <span id="urenBegin">begin</span> tot <span id="urenEinde">einde</span></span>
+    </div>
+    <div id="tabel">
+        <table>
+            <tr>
+                <th>Uren</th>
+                <th>Activiteit</th>
+            </tr>
+            <tr>
+                <td>7:45</td>
+                <td>niet vroeger douchen</td>
+            </tr>
+            <tr>
+                <td>8:15</td>
+                <td>wekken</td>
+            </tr>
+            <tr>
+                <td>8:30</td>
+                <td>ontbijt</td>
+            </tr>
+            <tr>
+                <td>9:15</td>
+                <td>verzamelen arena - lesmoment 1</td>
+            </tr>
+            <tr>
+                <td>10:45</td>
+                <td>pauze - bar</td>
+            </tr>
+            <tr>
+                <td>11:05</td>
+                <td>lesmoment 2</td>
+            </tr>
+            <tr>
+                <td>12:30</td>
+                <td>middageten en vrij</td>
+            </tr>
+            <tr>
+                <td>13:45</td>
+                <td>verzamelen arena - lesmoment 3</td>
+            </tr>
+            <tr>
+                <td>15:15</td>
+                <td>pauze - verzamelen</td>
+            </tr>
+            <tr>
+                <td>15:20</td>
+                <td>verzamelen bronne - start namiddagactiviteit</td>
+            </tr>
+            <tr>
+                <td>17:45</td>
+                <td>vrij</td>
+            </tr>
+            <tr>
+                <td>18:30</td>
+                <td>avondeten - vrij</td>
+            </tr>
+            <tr>
+                <td>19:30</td>
+                <td>verzamelen arena - start avondactiviteiten</td>
+            </tr>
+            <tr>
+                <td>21:30</td>
+                <td>vrij - bar</td>
+            </tr>
+            <tr>
+                <td>22:00</td>
+                <td>niet meer douchen</td>
+            </tr>
+            <tr>
+                <td>22:00</td>
+                <td>slapen gaan 1e graad blauw bandje</td>
+            </tr>
+            <tr>
+                <td>22:30</td>
+                <td>slapen gaan 2e graad groen bandje</td>
+            </tr>
+            <tr>
+                <td>22:45</td>
+                <td>slapen gaan 3e graad rood bandje</td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script>
+    const events = {
+        "07:45": "niet vroeger douchen",
+        "08:15": "wekken",
+        "08:30": "ontbijt",
+        "09:15": "verzamelen arena - lesmoment 1",
+        "10:45": "pauze - bar",
+        "11:05": "lesmoment 2",
+        "12:30": "middageten en vrij",
+        "13:45": "verzamelen arena - lesmoment 3",
+        "15:15": "pauze - verzamelen",
+        "15:20": "verzamelen bronne - start namiddagactiviteit",
+        "17:45": "vrij",
+        "18:30": "avondeten - vrij",
+        "19:30": "verzamelen arena - start avondactiviteiten",
+        "21:30": "vrij - bar",
+        "22:00": "niet meer douchen",
+        "22:00": "gaan slapen 1e graad blauwe bandjes",
+        "22:30": "gaan slapen 2e graad groene bandjes",
+        "22:45": "gaan slapen 3e graad rode bandjes"
+    }
+    const tijden = [745, 815, 830, 915, 1045, 1105, 1230, 1345, 1515, 1520, 1745, 1830, 1930, 2130, 2200, 2230, 2245];
+    function displayTime() {
+        const date = new Date();
+        let time;
+        if (date.getHours() < 10 && date.getMinutes() < 10) {
+            time = "0" + String(date.getHours()) + ":" + "0" + String(date.getMinutes());
+        } else if (date.getHours() < 10 && date.getMinutes() >= 10) {
+            time = "0" + String(date.getHours()) + ":" + String(date.getMinutes());
+        } else if (date.getHours() >= 10 && date.getMinutes() < 10) {
+            time = String(date.getHours()) + ":" + "0" + String(date.getMinutes());
+        } else {
+            time = String(date.getHours()) + ":" + String(date.getMinutes());
+        }
+        document.querySelector("#klok").innerHTML = time;
+        showActivity(time);
+    }
+    let lageTijden = [];
+    let hogeTijden = [];
+
+    function showActivity(actualDate) {
+        let actualDateNum = Number(actualDate.charAt(0) + actualDate.charAt(1) + actualDate.charAt(3) + actualDate.charAt(4));
+        for (let i = 0; i < tijden.length; i++) {
+            if (tijden[i] <= actualDateNum) {
+                lageTijden.push(tijden[i]);
+            } else {
+                hogeTijden.push(tijden[i]);
+            }
+        }
+        let num = lageTijden[lageTijden.length - 1];
+        let nextNum = tijden[tijden.indexOf(num) + 1];
+        num = String(num);
+        nextNum = String(nextNum);
+        num = num[0] + num[1] + ":" + num[2] + num[3];
+        nextNum = nextNum[0] + nextNum[1] + ":" + nextNum[2] + nextNum[3];
+        document.querySelector("#Activiteit").innerHTML = events[num];
+        document.querySelector("#urenBegin").innerHTML = num;
+        document.querySelector("#urenEinde").innerHTML = nextNum;
+    }
+    setInterval(displayTime, 1000);
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js')
+            .then(registration => {
+                console.log('Excellent, registered with scope:', registration.scope);
+            })
+            .catch(error => {
+                console.error('Service worker registration failed:', error);
+            });
+    }
+</script>
+
+</html>
