@@ -181,14 +181,25 @@
         let nextNum = tijden[tijden.indexOf(num) + 1];
         num = String(num);
         nextNum = String(nextNum);
-        num = num[0] + num[1] + ":" + num[2] + num[3];
-        nextNum = nextNum[0] + nextNum[1] + ":" + nextNum[2] + nextNum[3];
+        console.log(num);
+        console.log(num.length);
+        if (num.length != 4) {
+            num = "0" + num[0] + ":" + num[1] + num[2];
+        } else {
+            num = num[0] + num[1] + ":" + num[2] + num[3];
+        }
+        if (nextNum.length != 4) {
+            nextNum = "0" + nextNum[0] + ":" + nextNum[1] + nextNum[2];
+        } else {
+            nextNum = nextNum[0] + nextNum[1] + ":" + nextNum[2] + nextNum[3];
+        }
+        
         document.querySelector("#Activiteit").innerHTML = events[num];
         document.querySelector("#urenBegin").innerHTML = num;
         document.querySelector("#urenEinde").innerHTML = nextNum;
     }
     setInterval(displayTime, 1000);
-    if ('serviceWorker' in navigator) {
+    /*if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('./sw.js')
             .then(registration => {
                 console.log('Excellent, registered with scope:', registration.scope);
@@ -196,7 +207,7 @@
             .catch(error => {
                 console.error('Service worker registration failed:', error);
             });
-    }
+    }*/
 </script>
 
 </html>
