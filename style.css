@@ -1,0 +1,32 @@
+table,
+tr,
+td,
+th {
+    border: 1px black solid;
+    border-collapse: collapse;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#tabel,
+#klok,
+#Activiteit,
+#uren {
+    display: flex;
+    justify-content: center;
+}
+
+#klok {
+    font-size: 50px;
+}
+
+span {
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+    font-size: 20px;
+}
