@@ -199,7 +199,7 @@
         document.querySelector("#urenEinde").innerHTML = nextNum;
     }
     setInterval(displayTime, 1000);
-    /*if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('./sw.js')
             .then(registration => {
                 console.log('Excellent, registered with scope:', registration.scope);
@@ -207,7 +207,7 @@
             .catch(error => {
                 console.error('Service worker registration failed:', error);
             });
-    }*/
+    }
 </script>
 
 </html>
